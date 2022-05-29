@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Seznam všech tanků
+{% endblock %}
+
+{% block content %}
+<div class="row  mb-3 text-white bg-secondary p-3">
+  <div class="col-sm-12">
+    <h2 class="text-center">Alphabetical Tanks name</h2>
+  </div>
+</div>
+<div class="row">
+  {% for tank in tanks %}
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{ tank.name }}</h4>
+        <p class="card-text">
+          <strong>Popis:</strong>
+          {{ tank.description|truncatewords:25 }}
+        </p>
+        <p><strong>Národnost:</strong> {{ tank.nationality }}</p>
+        {% if tank.photo %}<img class="card-img-top" src="{{ tank.photo.url }}">
+        {% endif %}
+        <a href="{% url 'tanks_detail' tank.pk %}" class="btn btn-primary">Podrobnosti</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <strong>Celkový počet tanků:</strong> {{ num_tanks }}
+  </div>
+</div>
+{% endblock %}

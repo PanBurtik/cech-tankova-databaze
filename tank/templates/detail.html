@@ -1,0 +1,27 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+
+
+<div class="row text-center">
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{ tanks_detail.name }}</h4>
+        <p class="card-text">
+          <strong>Popis:</strong>
+          {{ tanks_detail.description }}
+        </p>
+        <p><strong>Národnost:</strong> {{ tanks_detail.nationality }}</p>
+          <p><strong>Typ vozidla: </strong>{{ tanks_detail.type }}</p>
+          <p><strong>Výskyt: </strong>{{ tanks_detail.pressence }}</p>
+          <p><strong>Počet členů posádky: </strong>{{ tanks_detail.Characteristics.crew }}</p>
+          <p><strong>Délka vozidla: </strong>{{ tanks_detail.length }}</p>
+        {% if tanks_detail.photo %}<img class="card-img-top" src="{{ tanks_detail.photo.url }}">
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
