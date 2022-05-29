@@ -2,6 +2,10 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 
+def tank_path(instance, filename):
+    return "tank/" + str(instance.name) + "/fotka/" + filename
+
+
 class Nationality(models.Model):
     name = models.CharField(max_length=50, verbose_name="Jméno státu:")
 
@@ -9,6 +13,7 @@ class Nationality(models.Model):
 
     class Meta:
         ordering = ['name']
+        verbose_name_plural = "Nationalities"
 
     def __str__(self):
         return self.name
@@ -18,6 +23,8 @@ class Tank(models.Model):
     name = models.CharField(max_length=50, verbose_name="Název tanku:")
 
     description = models.TextField(verbose_name="Popis tanku:")
+
+    photo = models.FileField(upload_to=tank_path, blank=True, null=True, verbose_name="Fotka:")
 
     TYPE = (
         ("light", "Lehký tank"),
@@ -34,7 +41,7 @@ class Tank(models.Model):
     PRESENCE = (
         ("1.", "V 1. světové válce"),
         ("2.", "V 2. světové válce"),
-        ("3.", "V jiné"),
+        ("3.", "V ne tak známe válce"),
         ("0.", "V žádné")
     )
 
@@ -82,6 +89,7 @@ class Characteristics(models.Model):
 
     class Meta:
         ordering = ['tank']
+        verbose_name_plural = "Characteristics"
 
     def __str__(self):
         return str(self.tank)
