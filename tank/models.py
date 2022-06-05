@@ -27,11 +27,11 @@ class Tank(models.Model):
     photo = models.FileField(upload_to=tank_path, blank=True, null=True, verbose_name="Fotka:")
 
     TYPE = (
-        ("light", "Lehký tank"),
-        ("medium","Střední tank"),
-        ("heavy", "Těžký tank"),
-        ("td", "stíhač tanků"),
-        ("arty", "Dělostřelectvo")
+        ("Lehký tank", "Lehký tank"),
+        ("Střední tank", "Střední tank"),
+        ("Těžký tank", "Těžký tank"),
+        ("Stíhač tanků", "Stíhač tanků"),
+        ("Dělostřelectvo", "Dělostřelectvo")
     )
 
     type = models.CharField(max_length=50, choices = TYPE,verbose_name="Typ vozidla:", help_text="Vyberte typ vozidla")
@@ -39,10 +39,10 @@ class Tank(models.Model):
     nationality = models.ForeignKey(Nationality, on_delete=models.CASCADE, verbose_name="Stát:")
 
     PRESENCE = (
-        ("1.", "V 1. světové válce"),
-        ("2.", "V 2. světové válce"),
-        ("3.", "V ne tak známe válce"),
-        ("0.", "V žádné")
+        ("V 1. světové válce", "V 1. světové válce"),
+        ("V 2. světové válce", "V 2. světové válce"),
+        ("V ne tak známe válce", "V ne tak známe válce"),
+        ("V žádné", "V žádné")
     )
 
     pressence = models.CharField(max_length=50, choices=PRESENCE, verbose_name="Výskyt:", help_text="Vyberte období, ve kterém se vozidlo vyskytovalo")

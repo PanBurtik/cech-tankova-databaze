@@ -10,7 +10,7 @@ from tank.models import Tank, Characteristics
 def index(request):
     num_tanks = Tank.objects.all().count
 
-    tanks = Tank.objects.order_by('name')[:3]
+    tanks = Tank.objects.order_by('-type')[:3]
 
 
     context ={
