@@ -10,10 +10,20 @@
         <p class="card-text">
           <strong>Popis:</strong>
           {{ tanks_detail.description }}
+          {% for character in tanks_detail.characteristics_set.all %}
         </p>
         <p><strong>Národnost:</strong> {{ tanks_detail.nationality }}</p>
           <p><strong>Typ vozidla: </strong>{{ tanks_detail.type }}</p>
           <p><strong>Výskyt: </strong>{{ tanks_detail.pressence }}</p>
+          <p><strong>Posádka: </strong>{{ character.crew }} lidí</p>
+        <p><strong>Výrobce: </strong>{{ character.maker }}</p>
+        <h3>Rozměry</h3>
+          <p><strong>Délka vozidla: </strong>{{ character.length }} metrů</p>
+          <p><strong>Šířka vozidla: </strong>{{ character.width }} metrů</p>
+          <p><strong>Délka vozidla: </strong>{{ character.height }} metrů</p>
+        <p><strong>Váha vozidla: </strong>{{ character.mass }} tun</p>
+
+          {% endfor %}
         {% if tanks_detail.photo %}<img class="card-img-top" src="{{ tanks_detail.photo.url }}">
         {% endif %}
       </div>
